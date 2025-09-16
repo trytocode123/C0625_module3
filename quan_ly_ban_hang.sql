@@ -24,7 +24,7 @@ p_price float
 create table order_detail(
 o_id_order int,
 p_id_product int,
-primary key(o_id, p_id),
+primary key(o_id_order, p_id_product),
 foreign key (o_id_order) references `order`(o_id),
 foreign key (p_id_product) references product(p_id),
 od_QTY varchar(50)
