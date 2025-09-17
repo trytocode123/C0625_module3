@@ -1,6 +1,6 @@
-create database quan_ly_may_tinh;
+create database quan_ly_su_dung_may_tinh;
 
-use quan_ly_may_tinh;
+use quan_ly_su_dung_may_tinh;
 
 create table computer(
 id int auto_increment primary key,
@@ -8,30 +8,37 @@ brand varchar(20),
 position_put varchar(20)
 );
 
--- Tên, SĐT, Email, Loại khách hàng
 
 create table customer(
-`name` varchar(20) primary key,
+id int auto_increment primary key,
+`name` varchar(20),
 phone_number varchar(20),
 email varchar(20),
 type_customer varchar(20),
-name_attemp_service varchar(20),
-foreign key (name_attemp_service) references service(name_attemp)
+name_attemp_service varchar(20)
 );
 
 create table computer_customer(
+id_customer int,
 id_computer int,
-name_customer varchar(20),
 start_time date,
-end_time date,don_dat_hang
-primary key(id_computer,name_customer),
+end_time date,
+primary key(id_computer,id_customer),
 foreign key (id_computer) references computer(id),
-foreign key (name_customer) references customer(`name`),
+foreign key (id_customer) references customer(id),
 total_payment int
 );
 
 create table service(
-name_attemp varchar(20) primary key,
-name_customer varchar(20),
-foreign key (name_customer) references customer(`name`)
+id int auto_increment primary key,
+name_attemp varchar(20),
+price int
+);
+
+create table customer_service(
+id_customer int,
+id_service int,
+primary key(id_customer,id_service),
+foreign key (id_customer) references customer(id),
+foreign key (id_service) references service(id)
 );
