@@ -7,8 +7,17 @@ product_code varchar(20),
 product_name varchar(20),
 product_price int,
 product_amount int,
+product_description varchar(50)
+);
+
+create table `history`(
+id int auto_increment primary key,
+product_code varchar(20),
+product_name varchar(20),
+product_price int,
+product_amount int,
 product_description varchar(50),
-product_status boolean
+old_product_description varchar(50)
 );
 
 insert into products 
@@ -51,7 +60,6 @@ delimiter ;
 
 call p_insert();
 
-SET sql_safe_updates = 0;
 delimiter //
 create procedure p_update(in id_product int, in `description` varchar(50))
 begin
@@ -59,4 +67,34 @@ update products set product_description = `description` where id = id_product;
 end //
 delimiter ;
 
-call p_update(2, 'Chuột chơi game không dây cao cấp');
+call p_update(2, 'Chuột chơi game không dây');
+
+delimiter //
+create procedure p_delete(in id_product int)
+begin
+delete from products where id = id_product;
+end //
+delimiter ;
+
+call p_delete(2);
+
+delimiter //
+create trigger t_product after 
+update on products 
+for each row
+begin 
+insert into `history`(product_code, product_name, product_price, product_amount, product_description,old_product_description) 
+values( new.product_code, 
+        new.product_name, 
+        new.product_price, 
+        new.product_amount, 
+        new.product_description,
+        old.product_description
+        );
+end //
+delimiter ;
+update products set product_description = 'Bàn phím cơ Ekko 1231' where id = 3;
+select * from `history`;
+
+drop trigger t_product;
+
