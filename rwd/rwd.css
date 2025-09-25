@@ -1,0 +1,178 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background: #f9fafb;
+    color: #333;
+    line-height: 1.6;
+}
+
+li {
+    text-align: center;
+}
+
+ul {
+    list-style: none;
+}
+
+.header-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    background: #2c3e50;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 25px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+}
+
+.list-menu-header {
+    display: flex;
+    gap: 20px;
+    list-style: none;
+}
+
+.list-menu-header a,
+.login {
+    text-decoration: none;
+    color: #ecf0f1;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.list-menu-header a:hover,
+.login:hover {
+    color: #f39c12;
+}
+
+.content {
+    display: flex;
+    gap: 20px;
+    margin: 80px 40px 40px;
+    min-height: 550px;
+}
+
+.left-bar,
+.main-content,
+.right-bar {
+    background: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.left-bar {
+    width: 20%;
+}
+
+.left-bar ul {
+    list-style: none;
+}
+
+.left-bar a {
+    display: block;
+    padding: 10px;
+    border-radius: 6px;
+    color: #2980b9;
+    text-decoration: none;
+    transition: background 0.3s;
+}
+
+.left-bar a:hover {
+    background: #ecf0f1;
+}
+
+.main-content {
+    width: 60%;
+}
+
+.welcome-block {
+    padding-bottom: 15px;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 20px;
+}
+
+.test-block {
+    padding: 15px;
+    border-radius: 6px;
+}
+
+.right-bar {
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.right-bar button {
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    background: #3498db;
+    color: #fff;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+}
+
+.right-bar button:hover {
+    background: #2980b9;
+    transform: translateY(-2px);
+}
+
+.footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #343a40;
+    color: #dddddd;
+    height: 70px;
+}
+
+@media (max-width: 480px) {
+    .content {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .right-bar {
+        width: 100%;
+    }
+
+    .main-content {
+        width: 100%;
+    }
+
+    .left-bar {
+        width: 100%;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .content {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .left-bar {
+        width: 30%;
+    }
+
+    .main-content {
+        width: 60%;
+        color: red;
+    }
+
+    .right-bar {
+        width: 100%;
+    }
+}
+
