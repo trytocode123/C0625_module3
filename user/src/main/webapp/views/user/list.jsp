@@ -19,7 +19,7 @@
 <form action="/users?action=search" method="post">
     <label>Tìm kiếm</label>
     <input name="search">
-    <button class="btn btn-info" href="/users/search">Search</button>
+    <button class="btn btn-info">Search</button>
 </form>
 
 <table class="table table-striped table ">
@@ -65,13 +65,42 @@
             </td>
 
             <td class="d-flex justify-content-between">
-                <a href="/users?action=delete&id=${user.id}" class="btn btn-danger">Delete</a>
-
+                <button onclick="deleteUser('${user.id}','${user.name}')" type="button" class="btn btn-primary"
+                        data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    Delete
+                </button>
                 <a href="/users?action=update&id=${user.id}" class="btn btn-warning">Update</a>
             </td>
 
         </tr>
     </c:forEach>
 </table>
+<!-- Modal -->
+<form action="/users?action=delete" method="post">
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <input type="hidden" id="inputId" name="idDelete">
+                <div class="modal-body">
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                    <button type="submit" class="btn btn-primary">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+<script>
+    function deleteUser(id, name) {
+        document.querySelector(".modal-body").innerHTML = "Are you sure to delete " + name + "?";
+        document.querySelector("#inputId").value = id;
+    }
+</script>
 </body>
 </html>

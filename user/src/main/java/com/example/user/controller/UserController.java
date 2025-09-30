@@ -56,6 +56,15 @@ public class UserController extends HttpServlet {
                 req.setAttribute("userList", users);
                 req.getRequestDispatcher("views/user/list.jsp").forward(req, resp);
                 break;
+            case "delete":
+                int iD = Integer.parseInt(req.getParameter("idDelete"));
+                userService.delete(iD);
+                try {
+                    resp.sendRedirect("/users?action=list");
+                } catch (IOException e) {
+                    throw new RuntimeException();
+                }
+                break;
         }
     }
 
@@ -73,15 +82,6 @@ public class UserController extends HttpServlet {
                 break;
             case "add":
                 req.getRequestDispatcher("views/user/add.jsp").forward(req, resp);
-                break;
-            case "delete":
-                int iD = Integer.parseInt(req.getParameter("id"));
-                userService.delete(iD);
-                try {
-                    resp.sendRedirect("/users?action=list");
-                } catch (IOException e) {
-                    throw new RuntimeException();
-                }
                 break;
             case "update":
                 int iDUpdate = Integer.parseInt(req.getParameter("id"));
