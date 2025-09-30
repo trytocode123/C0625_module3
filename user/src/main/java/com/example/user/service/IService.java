@@ -6,8 +6,12 @@ import java.util.List;
 
 public interface IService {
     List<User> findAll();
+
     boolean add(User user);
+
     boolean delete(int id);
-    boolean update(int id);
-    User findByName(String name);
+
+    boolean update(int id, User user);
+
+    List<User> findByCountry(String country);
 }

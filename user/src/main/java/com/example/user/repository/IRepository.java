@@ -7,7 +7,7 @@ import java.util.List;
 public interface IRepository {
     List<User> findAll();
     boolean add(User user);
-    boolean delete(int i);
-    boolean update(int i);
-    User findByName(String name);
+    boolean delete(int id);
+    boolean update(int id, User user);
+    List<User> findByCountry(String country);
 }

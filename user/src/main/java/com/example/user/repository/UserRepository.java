@@ -12,6 +12,8 @@ import java.util.List;
 public class UserRepository implements IUserRepository {
     private static final String SELECT_ALL = "select * from users";
     private static final String ADD = "insert into users (name, email, country) value(?,?,?)";
+    private static final String DELETE = "delete from users where id = ?";
+    private static final String UPDATE = "update users set name = ?, email = ?, country=? where id = ?";
 
     @Override
     public List<User> findAll() {
@@ -51,17 +53,45 @@ public class UserRepository implements IUserRepository {
     }
 
     @Override
-    public boolean delete(int i) {
-        return false;
+    public boolean delete(int id) {
+        Connection connection = BaseRepository.getConnectDB();
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(DELETE);
+            preparedStatement.setInt(1, id);
+            int row = preparedStatement.executeUpdate();
+            return row == 1;
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
     }
 
     @Override
-    public boolean update(int i) {
-        return false;
+    public boolean update(int id, User user) {
+        Connection connection = BaseRepository.getConnectDB();
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(UPDATE);
+            preparedStatement.setString(1, user.getName());
+            preparedStatement.setString(2, user.getEmail());
+            preparedStatement.setString(3, user.getCountry());
+            preparedStatement.setInt(4, id);
+            int row = preparedStatement.executeUpdate();
+            return row == 1;
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
     }
 
     @Override
-    public User findByName(String name) {
-        return null;
+    public List<User> findByCountry(String country) {
+        List<User> userList = findAll();
+        List<User> usersByCountry = new ArrayList<>();
+        for (User user : userList) {
+            if (user.getCountry().equalsIgnoreCase(country)) {
+                usersByCountry.add(user);
+            }
+        }
+        return usersByCountry;
     }
 }

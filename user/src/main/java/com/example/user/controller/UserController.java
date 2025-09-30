@@ -19,7 +19,7 @@ public class UserController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String action = req.getParameter("action");
-        if(action == null) {
+        if (action == null) {
             action = "";
         }
         switch (action) {
@@ -30,9 +30,6 @@ public class UserController extends HttpServlet {
                     String country = req.getParameter("country");
                     User user = new User(name, email, country);
                     userService.add(user);
-//                    List<User> userList = userService.findAll();
-//                    req.setAttribute("userList", userList);
-//                    req.getRequestDispatcher("views/user/list.jsp").forward(req, resp);
                     try {
                         resp.sendRedirect("/users?action=list");
                     } catch (IOException e) {
@@ -41,13 +38,31 @@ public class UserController extends HttpServlet {
                 } catch (Exception e) {
                     req.getRequestDispatcher("views/user/add.jsp").forward(req, resp);
                 }
+            case "update":
+                int id = Integer.parseInt(req.getParameter("id"));
+                String name = req.getParameter("name");
+                String email = req.getParameter("email");
+                String country = req.getParameter("country");
+                userService.update(id, new User(name, email, country));
+                try {
+                    resp.sendRedirect("/users?action=list");
+                } catch (IOException e) {
+                    throw new RuntimeException();
+                }
+                break;
+            case "search":
+                String countrySearch = req.getParameter("search");
+                List<User> users = userService.findByCountry(countrySearch);
+                req.setAttribute("userList", users);
+                req.getRequestDispatcher("views/user/list.jsp").forward(req, resp);
+                break;
         }
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String action = req.getParameter("action");
-        if(action == null) {
+        if (action == null) {
             action = "";
         }
         switch (action) {
@@ -61,12 +76,17 @@ public class UserController extends HttpServlet {
                 break;
             case "delete":
                 int iD = Integer.parseInt(req.getParameter("id"));
-                System.out.println(iD);
+                userService.delete(iD);
                 try {
                     resp.sendRedirect("/users?action=list");
-                }catch (IOException e){
+                } catch (IOException e) {
                     throw new RuntimeException();
                 }
+                break;
+            case "update":
+                int iDUpdate = Integer.parseInt(req.getParameter("id"));
+                req.setAttribute("id", iDUpdate);
+                req.getRequestDispatcher("views/user/update.jsp").forward(req, resp);
                 break;
         }
     }

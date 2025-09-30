@@ -11,6 +11,14 @@
     <title>Title</title>
 </head>
 <body>
-
+<form action="/users?action=update&id=${id}" method="post">
+    <label>Name</label>
+    <input name="name">
+    <label>Email</label>
+    <input name="email">
+    <label>Country</label>
+    <input name="country">
+    <button>Save</button>
+</form>
 </body>
 </html>

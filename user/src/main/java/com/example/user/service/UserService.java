@@ -21,16 +21,34 @@ public class UserService implements IUserService {
 
     @Override
     public boolean delete(int id) {
+        int i = isValid(id);
+        if (i != -1) {
+            return userRepository.delete(id);
+        }
         return false;
     }
 
     @Override
-    public boolean update(int id) {
+    public boolean update(int id, User user) {
+        int i = isValid(id);
+        if (i != -1) {
+            return userRepository.update(id, user);
+        }
         return false;
     }
 
     @Override
-    public User findByName(String name) {
-        return null;
+    public List<User> findByCountry(String country) {
+        return userRepository.findByCountry(country);
+    }
+
+    int isValid(int id) {
+        List<User> userList = findAll();
+        for (int i = 0; i < userList.size(); i++) {
+            if (userList.get(i).getId() == id) {
+                return i;
+            }
+        }
+        return -1;
     }
 }
