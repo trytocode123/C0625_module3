@@ -6,23 +6,26 @@ public class Product {
     private double giaSanPham;
     private String moTaSanPham;
     private String nhaSanXuat;
+    private int idCategory;
 
     public Product() {
     }
 
-    public Product(String tenSanPham, double giaSanPham, String moTaSanPham, String nhaSanXuat) {
+    public Product(String tenSanPham, double giaSanPham, String moTaSanPham, String nhaSanXuat, int idCategory) {
         this.tenSanPham = tenSanPham;
         this.giaSanPham = giaSanPham;
         this.moTaSanPham = moTaSanPham;
         this.nhaSanXuat = nhaSanXuat;
+        this.idCategory = idCategory;
     }
 
-    public Product(int id, String tenSanPham, double giaSanPham, String moTaSanPham, String nhaSanXuat) {
+    public Product(int id, String tenSanPham, double giaSanPham, String moTaSanPham, String nhaSanXuat, int idCategory) {
         this.id = id;
         this.tenSanPham = tenSanPham;
         this.giaSanPham = giaSanPham;
         this.moTaSanPham = moTaSanPham;
         this.nhaSanXuat = nhaSanXuat;
+        this.idCategory = idCategory;
     }
 
     public int getId() {
@@ -63,5 +66,13 @@ public class Product {
 
     public void setNhaSanXuat(String nhaSanXuat) {
         this.nhaSanXuat = nhaSanXuat;
+    }
+
+    public int getIdCategory() {
+        return idCategory;
+    }
+
+    public void setIdCategory(int idCategory) {
+        this.idCategory = idCategory;
     }
 }

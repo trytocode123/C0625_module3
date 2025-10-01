@@ -1,31 +1,33 @@
 package com.example.product.service;
 
+import com.example.product.dto.ProductDto;
 import com.example.product.entity.Product;
 import com.example.product.repository.IProductRepository;
 import com.example.product.repository.ProductRepository;
 
 import java.util.List;
 
-public class ProductService implements IProductService{
+public class ProductService implements IProductService {
     IProductRepository productRepository = new ProductRepository();
+
     @Override
     public List<Product> findAll() {
-        return productRepository.findAll();
+        return null;
     }
 
     @Override
     public boolean add(Product product) {
-        return false;
+        return productRepository.add(product);
     }
 
     @Override
-    public boolean update(int i) {
-        return false;
+    public boolean update(Product product) {
+        return productRepository.update(product);
     }
 
     @Override
-    public boolean delete(int i) {
-        return false;
+    public boolean delete(int iD) {
+        return productRepository.delete(iD);
     }
 
     @Override

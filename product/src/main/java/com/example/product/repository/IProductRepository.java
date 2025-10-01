@@ -1,4 +1,6 @@
 package com.example.product.repository;
 
-public interface IProductRepository extends IRepository {
+import com.example.product.entity.Product;
+
+public interface IProductRepository extends IRepository<Product> {
 }

@@ -13,6 +13,27 @@
     <c:import url="/views/layout/library.jsp"/>
 </head>
 <body>
+<form action="/products?action=add" method="post">
+    <label>Tên sản phẩm</label>
+    <input name="nameProduct">
 
+    <label>Giá sản phẩm</label>
+    <input name="price">
+
+    <label>Mô tả sản phẩm</label>
+    <input name="description">
+
+    <label>Nhà sản xuất</label>
+    <input name="producer">
+
+    <label>Danh mục</label>
+    <select name="category">
+        <option>--Danh mục--</option>
+        <c:forEach var="category" items="${categoryList}" varStatus="status">
+            <option value="${category.iD}"><c:out value="${category.name}"/></option>
+        </c:forEach>
+    </select>
+    <button>Save</button>
+</form>
 </body>
 </html>

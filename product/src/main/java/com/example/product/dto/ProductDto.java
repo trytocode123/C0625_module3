@@ -11,6 +11,14 @@ public class ProductDto {
     public ProductDto() {
     }
 
+    public ProductDto(String tenSanPham, double giaSanPham, String moTaSanPham, String nhaSanXuat, String category) {
+        this.tenSanPham = tenSanPham;
+        this.giaSanPham = giaSanPham;
+        this.moTaSanPham = moTaSanPham;
+        this.nhaSanXuat = nhaSanXuat;
+        this.category = category;
+    }
+
     public ProductDto(int id, String tenSanPham, double giaSanPham, String moTaSanPham, String nhaSanXuat, String category) {
         this.id = id;
         this.tenSanPham = tenSanPham;

@@ -1,4 +1,7 @@
 package com.example.product.service;
 
-public interface IProductService extends IService{
+
+import com.example.product.entity.Product;
+
+public interface IProductService extends IService<Product> {
 }
