@@ -32,7 +32,6 @@ public class ProductController extends HttpServlet {
                 List<Product> productList = productService.findAll();
                 req.setAttribute("productList", productList);
                 req.getRequestDispatcher("views/product/list.jsp").forward(req, resp);
-                System.out.println("concac");
                 break;
         }
     }

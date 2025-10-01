@@ -1,28 +1,23 @@
-package com.example.product.entity;
+package com.example.product.dto;
 
-public class Product {
+public class ProductDto {
     private int id;
     private String tenSanPham;
     private double giaSanPham;
     private String moTaSanPham;
     private String nhaSanXuat;
+    private String category;
 
-    public Product() {
+    public ProductDto() {
     }
 
-    public Product(String tenSanPham, double giaSanPham, String moTaSanPham, String nhaSanXuat) {
-        this.tenSanPham = tenSanPham;
-        this.giaSanPham = giaSanPham;
-        this.moTaSanPham = moTaSanPham;
-        this.nhaSanXuat = nhaSanXuat;
-    }
-
-    public Product(int id, String tenSanPham, double giaSanPham, String moTaSanPham, String nhaSanXuat) {
+    public ProductDto(int id, String tenSanPham, double giaSanPham, String moTaSanPham, String nhaSanXuat, String category) {
         this.id = id;
         this.tenSanPham = tenSanPham;
         this.giaSanPham = giaSanPham;
         this.moTaSanPham = moTaSanPham;
         this.nhaSanXuat = nhaSanXuat;
+        this.category = category;
     }
 
     public int getId() {
@@ -63,5 +58,13 @@ public class Product {
 
     public void setNhaSanXuat(String nhaSanXuat) {
         this.nhaSanXuat = nhaSanXuat;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 }
